@@ -41,10 +41,26 @@ export const loadItems = () => {
           return;
         }
     
-    
+        // Ici, on retourne le json obtenu, mais on veut directement obtenir les resultats pour faire
+        // une map dans FilmGrid
         return axios.get('https://api.themoviedb.org/3/movie/popular?page=1&api_key=f1be4bafe6f7cb0cb84f5948c5b75497')
           .then(response => {
             dispatch({ type: ITEMS_LOADED, items: response.data.results})
           });
       }
-    }
+}
+// Meme fonction que ci-dessus mais pour les upcomings
+export const loadUpcomingItems = () =>  {
+    return async (dispatch, getState) => {
+        const state = getState();
+        console.log(state);
+        if (state.movie.items.length > 0) {
+          return;
+        }
+    
+        return axios.get('https://api.themoviedb.org/3/movie/upcoming?page=1&api_key=f1be4bafe6f7cb0cb84f5948c5b75497')
+          .then(response => {
+            dispatch({ type: ITEMS_LOADED, items: response.data.results})
+          });
+      }
+}

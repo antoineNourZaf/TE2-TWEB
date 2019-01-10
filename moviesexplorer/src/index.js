@@ -6,7 +6,7 @@ import './index.css';
 import App from './components/App';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
-
+import {HashRouter} from 'react-router-dom';
 const initialState = window.REDUX_STATE || {};
 const store = configureStore(initialState);
 console.log('initialState', store.getState());
@@ -16,8 +16,9 @@ const render = process.env.NODE_ENV === 'production'
   : ReactDOM.render;
 
 render(
-  <Provider store={store}>
+  <Provider store={store}><HashRouter>
     <App />
+    </HashRouter>
   </Provider>,
   document.getElementById('root'));
 

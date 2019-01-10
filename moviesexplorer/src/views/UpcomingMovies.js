@@ -3,16 +3,22 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { loadItems } from '../reducers/movie';
+import {loadUpcomingItems} from '../reducers/movie';
 
 
-class FilmGrid extends Component {
+class UpcomingMovies extends Component {
   
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(loadItems());
+        dispatch(loadUpcomingItems());
     }
-  
+
+    componentWillUpdate() {
+        const { dispatch } = this.props;
+        dispatch(loadUpcomingItems());
+    } 
+    
+    
 
 
   render() {
@@ -22,13 +28,13 @@ class FilmGrid extends Component {
     }
 
     return (
-      <div>
+        <div>
         {items.map(item => (
-          <div className="FilmGridItem" key={item.id}>
+          <div className="UpcomingMoviesItem" key={item.id}>
           <h3>{item.title}</h3>
           vote: {item.vote_average} 
           
-            <div className="FilmGridItem-secondary">
+            <div className="UpcomingMoviesItem-secondary">
               
             </div>
             <img src={'https://image.tmdb.org/t/p/w500/'+ item.poster_path} alt={item.title} height={200} width='auto'/>
@@ -48,4 +54,4 @@ export default connect(
     items: state.movie.items,
     loading: state.movie.loading,
   }),
-)(FilmGrid);
+)(UpcomingMovies);
