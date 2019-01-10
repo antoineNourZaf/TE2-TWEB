@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import love from './love.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        Bonjour mon amour <3
+        <header className="App-header">
+          <img src={love} className="App-love" alt="love" />
+          <p>
+            Bonjour mon coeur
+          </p>
+          <u
+          >
+            Tu me manques beaucoup !
+          </u>
+        </header>
       </div>
     );
   }
